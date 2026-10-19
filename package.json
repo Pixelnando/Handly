@@ -1,0 +1,14 @@
+{
+  "name": "handly",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Handly — plataforma de contratação de trabalhadores autônomos (FATEC Ourinhos). Node.js sem dependências.",
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "demo": "node --disable-warning=ExperimentalWarning server/index.js --demo",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js --demo",
+    "test": "node --disable-warning=ExperimentalWarning --test tests/api.test.js tests/contrast.test.js"
+  }
+}
