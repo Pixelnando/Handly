@@ -50,6 +50,7 @@ export async function page(ctx) {
       const st = { pendente: ["pending", "Aguardando resposta"], aceita: ["positive", "Aceita"], recusada: ["negative", "Recusada"], substituida: ["", "Substituída"], cancelada: ["negative", "Cancelada"], expirada: ["", "Expirada"] }[p.status] || ["", p.status];
       const el = h("div", { class: `proposal${p.status === "pendente" ? "" : " settled"}` },
         h("h4", null, p.kind === "contraproposta" ? "Contraproposta" : "Proposta", h("span", { class: `chip ${st[0]}` }, st[1])),
+        p.request_id ? h("p", { class: "proposal-ref" }, icon("clipboard"), `Solicitação nº ${p.request_id}`, p.service_name ? ` · ${p.service_name}` : "") : null,
         h("dl", { class: "kv" }, h("dt", null, "Valor"), h("dd", { class: "price" }, brl(p.value)), h("dt", null, "Data e hora"), h("dd", null, fmtDateTime(p.scheduled_start)),
           h("dt", null, "Local"), h("dd", null, p.location), p.notes ? [h("dt", null, "Observações"), h("dd", null, p.notes)] : null),
         h("div", { class: "muted small" }, `${mine ? "Você" : m.sender_name} · ${fmtWhen(m.created_at)}`),

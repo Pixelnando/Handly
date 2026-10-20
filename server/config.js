@@ -45,6 +45,9 @@ export function loadConfig(overrides = {}) {
     ADMIN_PASSWORD: env.HANDLY_ADMIN_PASSWORD || '',
     HEARTBEAT_SECONDS: int('HANDLY_HEARTBEAT_SECONDS', 60),
     JOBS: env.HANDLY_JOBS !== '0',
+    // Antecedência mínima desativada e conclusão liberada antes do horário (padrão: ligado, para testar conclusão/avaliação).
+    // Para voltar às regras RN44/RN46 (mínimo de 2 h), defina HANDLY_TEST_MODE=0.
+    TEST_MODE: env.HANDLY_TEST_MODE !== '0',
     TEST_HOOKS: env.HANDLY_TEST_HOOKS === '1',
     QUIET: env.HANDLY_QUIET === '1',
     ...overrides,

@@ -6,7 +6,7 @@
   <title>Handly — serviços autônomos perto de você</title>
   <meta name="description" content="Handly conecta clientes a trabalhadores autônomos: busque, negocie, agende e avalie serviços.">
   <meta name="theme-color" content="#1e1e1e">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPCEtLSDDmm5pY28gYXJxdWl2byBmb3JhIGRlIHRva2Vucy5jc3MgY29tIGNvcmVzIGxpdGVyYWlzIChTVkcgY29tbyA8aW1nPiBuw6NvIGzDqiB2YXJpw6F2ZWlzIENTUyk7IHZhbG9yZXMgPSBwYWxldGEgZGUgbWFyY2EuIC0tPgogIDxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgcng9IjciIGZpbGw9IiMyYzJjMmMiLz4KICA8cGF0aCBkPSJNOSA2djIwIiBzdHJva2U9IiNlYzhmOGQiIHN0cm9rZS13aWR0aD0iMy42IiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiLz4KICA8cGF0aCBkPSJNMjMgNnYyMCIgc3Ryb2tlPSIjNDRhMTk0IiBzdHJva2Utd2lkdGg9IjMuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBmaWxsPSJub25lIi8+CiAgPHBhdGggZD0iTTkgMTdjMC02IDE0LTYgMTQgMCIgc3Ryb2tlPSIjZjRmMGU0IiBzdHJva2Utd2lkdGg9IjMuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo=">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+CiAgPCEtLSBDb3JlcyBsaXRlcmFpczogU1ZHIGNvbW8gPGltZz4gbsOjbyBsw6ogdmFyacOhdmVpcyBDU1M7IHZhbG9yZXMgPSBwYWxldGEgZGUgbWFyY2EuIC0tPgogIDxyZWN0IHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgcng9IjEwIiBmaWxsPSIjMmMyYzJjIi8+CiAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoLTM1IDI0IDI0KSB0cmFuc2xhdGUoMCAwKSBzY2FsZSguODYpIHRyYW5zbGF0ZSgzLjggMy44KSI+PHBhdGggZD0iTTE5IDI1VjExYTMuMiAzLjIgMCAwIDEgNi40IDB2MTFNMjUuNCAyMS41aDIuNGEzLjIgMy4yIDAgMCAxIDMuMiAzLjJNMzEgMjQuN2gxLjZhMy4yIDMuMiAwIDAgMSAzLjIgMy4yTTM1LjggMjcuOVYzM2MwIDYuNC00LjQgMTAtMTAuNCAxMGgtMy42Yy0zLjIgMC01LjYtMS44LTcuNC00LjZsLTUtOGEzLjIgMy4yIDAgMCAxIDUuNC0zLjRMMTkgMzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2VjOGY4ZCIgc3Ryb2tlLXdpZHRoPSIzLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvZz4KPC9zdmc+Cg==">
   <style>
 /* ==========================================================================
    Handly — design tokens
@@ -196,7 +196,10 @@ a.link { color: var(--hd-red-light); font-weight: 600; }
 .brand { display: inline-flex; align-items: center; gap: var(--hd-space-2); font-weight: 750; font-size: 1.35rem; letter-spacing: -0.02em; }
 .brand:hover, .brand:focus-visible { text-decoration: none; }
 .brand img { width: 30px; height: 30px; display: block; }
-.brand .dot { color: var(--hd-red-light); }
+.brand .wordmark { font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.brand .wm-hand { color: var(--hd-green-light); }
+.brand .wm-ly { color: var(--hd-red-light); }
+.brand .logo-mark { flex: none; }
 .nav { display: flex; align-items: center; gap: var(--hd-space-1); flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
 .nav a { padding: var(--hd-space-2) 10px; border-radius: var(--hd-radius-sm); white-space: nowrap; color: var(--hd-text-muted); font-weight: 560; }
@@ -402,6 +405,8 @@ table.table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 .msg:not(.mine):not(.system) .meta { color: var(--hd-text-muted); }
 .msg.mine .meta { color: var(--hd-text); }
 .proposal { align-self: stretch; max-width: 100%; border: 1px solid var(--hd-red-light); background: var(--hd-card-raised); border-radius: var(--hd-radius); padding: var(--hd-space-4); }
+.proposal-ref { display: flex; align-items: center; gap: var(--hd-space-2); margin-bottom: var(--hd-space-2); font-size: .85rem; font-weight: 650; color: var(--hd-red-light); }
+.proposal-ref svg { width: 1em; height: 1em; flex: none; }
 .proposal.settled { border-color: var(--hd-sep-16); }
 .proposal h4 { display: flex; justify-content: space-between; gap: var(--hd-space-2); flex-wrap: wrap; margin-bottom: var(--hd-space-2); }
 .proposal .actions { display: flex; gap: var(--hd-space-2); flex-wrap: wrap; margin-top: var(--hd-space-3); }
@@ -426,7 +431,7 @@ table.table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 .auth-wrap { min-height: calc(100vh - 20px); display: grid; place-items: center; padding: var(--hd-space-5) var(--hd-space-4); }
 .auth-card { width: min(480px, 100%); }
 .auth-card.wide { width: min(720px, 100%); }
-.auth-card .brand { justify-content: center; margin-bottom: var(--hd-space-4); font-size: 1.8rem; }
+.auth-card .brand { display: flex; justify-content: center; margin-bottom: var(--hd-space-4); font-size: 1.8rem; }
 .hero { display: grid; gap: var(--hd-space-4); padding-block: var(--hd-space-6); }
 .hero h1 { max-width: 18ch; }
 .progress { height: 8px; border-radius: 4px; background: var(--hd-card-raised); overflow: hidden; }
@@ -500,6 +505,7 @@ const ICONS = {
   trash: "M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13",
   home: "M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9z",
   chart: "M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3",
+  clipboard: "M9 4h6v3H9zM7 5H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-1M9 12h6M9 16h6",
   send: "M4 12l16-8-6 16-3-7-7-1z",
   inbox: "M4 13l2-8h12l2 8M4 13v6h16v-6M4 13h5l1 2h4l1-2h5",
   lock: "M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6z",
@@ -529,23 +535,24 @@ function stars(value, { size } = {}) {
 }
 
 function logoMark() {
-  // Marca original do Handly: duas "mãos" (arcos) em vermelho claro e verde claro, definidas por tokens.
+  // Ícone da marca: mão com o indicador apontando (contorno em vermelho claro, definido por token).
   const svg = document.createElementNS(SVG_NS, "svg");
-  svg.setAttribute("viewBox", "0 0 32 32");
+  svg.setAttribute("viewBox", "0 0 48 48");
   svg.setAttribute("aria-hidden", "true");
   svg.setAttribute("class", "logo-mark");
-  svg.style.width = svg.style.height = "30px";
-  const mk = (d, color) => {
-    const p = document.createElementNS(SVG_NS, "path");
-    p.setAttribute("d", d);
-    p.setAttribute("fill", "none");
-    p.setAttribute("stroke-width", "3.6");
-    p.setAttribute("stroke-linecap", "round");
-    p.style.stroke = color;
-    return p;
-  };
-  svg.append(mk("M8 5v22", "var(--hd-red-light)"), mk("M24 5v22", "var(--hd-green-light)"), mk("M8 17c0-6 16-6 16 0", "var(--hd-text)"));
+  svg.style.width = svg.style.height = "1.5em";
+  const g = document.createElementNS(SVG_NS, "g");
+  g.setAttribute("transform", "rotate(-35 24 24)");
+  const p = document.createElementNS(SVG_NS, "path");
+  p.setAttribute("d", "M19 25V11a3.2 3.2 0 0 1 6.4 0v11M25.4 21.5h2.4a3.2 3.2 0 0 1 3.2 3.2M31 24.7h1.6a3.2 3.2 0 0 1 3.2 3.2M35.8 27.9V33c0 6.4-4.4 10-10.4 10h-3.6c-3.2 0-5.6-1.8-7.4-4.6l-5-8a3.2 3.2 0 0 1 5.4-3.4L19 32");
+  p.setAttribute("fill", "none"); p.setAttribute("stroke-width", "3.4"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round");
+  p.style.stroke = "var(--hd-red-light)";
+  g.append(p); svg.append(g);
   return svg;
+}
+// Logotipo completo: ícone + "hand" (verde claro) + "ly" (vermelho claro).
+function logoFull() {
+  return [logoMark(), h("span", { class: "wordmark" }, h("span", { class: "wm-hand" }, "hand"), h("span", { class: "wm-ly" }, "ly"))];
 }
 
 /* ------------------------------------------------------------------ formatação */
@@ -864,17 +871,17 @@ function go(path) { location.hash = path; }
 function debounce(fn, ms = 300) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 function qs(obj) { const p = new URLSearchParams(); for (const [k, v] of Object.entries(obj)) if (v !== "" && v !== null && v !== undefined) p.set(k, v); const s = p.toString(); return s ? "?" + s : ""; }
 
-return { state, TZ, h, append, clear, mount, icon, stars, logoMark, brl, fmtDate, fmtDateTime, fmtTime, fmtLong, todayLocal, WEEKDAYS, WEEKDAYS_SHORT, fmtDay, dateBr, addDays, localParts, initials, maskCpfInput, maskPhoneInput, STATUS_CHIP, statusChip, ApiErr, api, download, toast, notice, empty, loading, dialog, confirmDialog, field, form, cityPicker, pager, pageHead, go, debounce, qs };
+return { state, TZ, h, append, clear, mount, icon, stars, logoMark, logoFull, brl, fmtDate, fmtDateTime, fmtTime, fmtLong, todayLocal, WEEKDAYS, WEEKDAYS_SHORT, fmtDay, dateBr, addDays, localParts, initials, maskCpfInput, maskPhoneInput, STATUS_CHIP, statusChip, ApiErr, api, download, toast, notice, empty, loading, dialog, confirmDialog, field, form, cityPicker, pager, pageHead, go, debounce, qs };
 })();
 __m.auth = (function () {
 /* Cadastro (RF01), login (RF02), recuperação de acesso (UC03). */
-const { api, h, field, form, cityPicker, notice, logoMark, maskCpfInput, toast } = __m.lib;
+const { api, h, field, form, cityPicker, notice, logoFull, maskCpfInput, toast } = __m.lib;
 const setSession = (...a) => __m.app.setSession(...a);
 const sessionStorageSafe = (...a) => __m.app.sessionStorageSafe(...a);
 
 function authFrame(title, subtitle, content, wide = false) {
   return h("div", { class: "auth-wrap" }, h("div", { class: `card auth-card${wide ? " wide" : ""}` },
-    h("div", { class: "brand", role: "img", "aria-label": "Handly" }, logoMark(), h("span", null, "handly", h("span", { class: "dot" }, "."))),
+    h("div", { class: "brand", role: "img", "aria-label": "Handly" }, ...logoFull()),
     h("h1", { tabindex: "-1", class: "center" }, title), subtitle ? h("p", { class: "muted center" }, subtitle) : null, content));
 }
 
@@ -1425,6 +1432,7 @@ async function page(ctx) {
       const st = { pendente: ["pending", "Aguardando resposta"], aceita: ["positive", "Aceita"], recusada: ["negative", "Recusada"], substituida: ["", "Substituída"], cancelada: ["negative", "Cancelada"], expirada: ["", "Expirada"] }[p.status] || ["", p.status];
       const el = h("div", { class: `proposal${p.status === "pendente" ? "" : " settled"}` },
         h("h4", null, p.kind === "contraproposta" ? "Contraproposta" : "Proposta", h("span", { class: `chip ${st[0]}` }, st[1])),
+        p.request_id ? h("p", { class: "proposal-ref" }, icon("clipboard"), `Solicitação nº ${p.request_id}`, p.service_name ? ` · ${p.service_name}` : "") : null,
         h("dl", { class: "kv" }, h("dt", null, "Valor"), h("dd", { class: "price" }, brl(p.value)), h("dt", null, "Data e hora"), h("dd", null, fmtDateTime(p.scheduled_start)),
           h("dt", null, "Local"), h("dd", null, p.location), p.notes ? [h("dt", null, "Observações"), h("dd", null, p.notes)] : null),
         h("div", { class: "muted small" }, `${mine ? "Você" : m.sender_name} · ${fmtWhen(m.created_at)}`),
@@ -1704,7 +1712,7 @@ async function serviceForm(ctx) {
     field({ name: "avg_duration_min", label: "Tempo médio (minutos)", type: "number", min: 15, max: 1440, step: 15, required: true, value: s?.avg_duration_min ?? 60 }),
     field({ name: "service_area", label: "Área de atendimento", required: true, maxlength: 200, value: s?.service_area ?? state.me.user.city + "/" + state.me.user.uf, class: "full" }),
     field({ name: "cancellation_fee_percent", label: "Taxa de cancelamento (%)", type: "number", min: 0, max: 100, required: true, value: s?.cancellation_fee_percent ?? 0, hint: "Aplicada a cancelamentos do cliente nas últimas 24 h." }),
-    field({ name: "min_notice_hours", label: "Antecedência mínima (horas)", type: "number", min: 1, value: s?.min_notice_hours ?? 2, hint: "Padrão: 2 horas." }),
+    field({ name: "min_notice_hours", label: "Antecedência mínima (horas)", type: "number", min: 1, value: s?.min_notice_hours ?? 2, hint: "Atualmente o sistema não exige antecedência mínima (modo de testes)." }),
     field({ name: "max_notice_hours", label: "Antecedência máxima (horas)", type: "number", min: 1, value: s?.max_notice_hours ?? "", hint: "Opcional: até quanto tempo à frente aceita agendamentos." }),
     mode,
     field({ name: "notes", label: "Observações para o cliente", type: "textarea", rows: 2, maxlength: 800, value: s?.notes ?? "", class: "full" }),
@@ -2166,7 +2174,7 @@ return { dashboard, users, categories, reviews, audit, notices };
 })();
 __m.app = (function () {
 /* Handly — shell da aplicação: sessão, roteador por hash, navegação por perfil, polling leve. */
-const { api, ApiErr, h, mount, clear, icon, logoMark, state, notice, loading, toast } = __m.lib;
+const { api, ApiErr, h, mount, clear, icon, logoFull, state, notice, loading, toast } = __m.lib;
 const auth = __m.auth;
 const home = __m.home;
 const search = __m.search;
@@ -2271,7 +2279,7 @@ function renderHeader(path) {
   document.addEventListener("click", (e) => { if (!menu.contains(e.target)) { menuPanel.hidden = true; trigger.setAttribute("aria-expanded", "false"); } });
   menu.addEventListener("keydown", (e) => { if (e.key === "Escape") { menuPanel.hidden = true; trigger.setAttribute("aria-expanded", "false"); trigger.focus(); } });
   return h("header", { class: "site-header" }, h("div", { class: "container" },
-    h("a", { class: "brand", href: "#/", "aria-label": "Handly — início" }, logoMark(), h("span", null, "handly", h("span", { class: "dot" }, "."))),
+    h("a", { class: "brand", href: "#/", "aria-label": "Handly — início" }, ...logoFull()),
     nav, h("div", { class: "header-actions" }, me.user.role === "admin" ? null : bell, menu)));
 }
 

@@ -1,6 +1,6 @@
 // RF16 / UC09 / UC10 — chat, propostas e contrapropostas.
 import { audit, fail, login, notify, ok, toInt, track } from '../api.js';
-import { addMessage, createProposal, fmtDt, getOrCreateConversation, proposalDict, systemMessage } from '../chatlib.js';
+import { PROPOSAL_SELECT, addMessage, createProposal, fmtDt, getOrCreateConversation, proposalDict, systemMessage } from '../chatlib.js';
 import { checkSlot, expireRequests, getProfile, hasActiveSubscription, loadService } from '../domain.js';
 import { cleanStr, iso, money, nowIso, parseIso } from '../util.js';
 import { toFloat } from './auth.js';
@@ -94,7 +94,7 @@ export default function routes(r) {
       FROM messages m LEFT JOIN users u ON u.id=m.sender_id WHERE m.conversation_id=? AND m.id>? ORDER BY m.id`, cid, after);
     const props = {};
     const pids = msgs.filter((m) => m.proposal_id).map((m) => m.proposal_id);
-    if (pids.length) for (const p of db.all(`SELECT * FROM proposals WHERE id IN (${pids.map(() => '?').join(',')})`, ...pids)) props[p.id] = proposalDict(p);
+    if (pids.length) for (const p of db.all(`${PROPOSAL_SELECT} WHERE p.id IN (${pids.map(() => '?').join(',')})`, ...pids)) props[p.id] = proposalDict(p);
     for (const m of msgs) m.proposal = props[m.proposal_id] ?? null;
     const openReq = db.get("SELECT id,status,service_name FROM requests WHERE conversation_id=? AND status IN ('aguardando_resposta','em_negociacao','agendada') ORDER BY id DESC LIMIT 1", cid);
     return ok({
@@ -203,6 +203,6 @@ export default function routes(r) {
   /** RF16.12 — histórico de propostas e contrapropostas da conversa. */
   r.get('/conversations/:cid/proposals', login((ctx) => {
     loadConv(ctx.db, ctx.params.cid, ctx.user);
-    return ok({ items: ctx.db.all('SELECT * FROM proposals WHERE conversation_id=? ORDER BY id', ctx.params.cid).map(proposalDict) });
+    return ok({ items: ctx.db.all(`${PROPOSAL_SELECT} WHERE p.conversation_id=? ORDER BY p.id`, ctx.params.cid).map(proposalDict) });
   }));
 }

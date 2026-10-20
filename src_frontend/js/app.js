@@ -1,5 +1,5 @@
 /* Handly — shell da aplicação: sessão, roteador por hash, navegação por perfil, polling leve. */
-import { api, ApiErr, h, mount, clear, icon, logoMark, state, notice, loading, toast } from "./lib.js";
+import { api, ApiErr, h, mount, clear, icon, logoFull, state, notice, loading, toast } from "./lib.js";
 import * as auth from "./pages/auth.js";
 import * as home from "./pages/home.js";
 import * as search from "./pages/search.js";
@@ -104,7 +104,7 @@ function renderHeader(path) {
   document.addEventListener("click", (e) => { if (!menu.contains(e.target)) { menuPanel.hidden = true; trigger.setAttribute("aria-expanded", "false"); } });
   menu.addEventListener("keydown", (e) => { if (e.key === "Escape") { menuPanel.hidden = true; trigger.setAttribute("aria-expanded", "false"); trigger.focus(); } });
   return h("header", { class: "site-header" }, h("div", { class: "container" },
-    h("a", { class: "brand", href: "#/", "aria-label": "Handly — início" }, logoMark(), h("span", null, "handly", h("span", { class: "dot" }, "."))),
+    h("a", { class: "brand", href: "#/", "aria-label": "Handly — início" }, ...logoFull()),
     nav, h("div", { class: "header-actions" }, me.user.role === "admin" ? null : bell, menu)));
 }
 

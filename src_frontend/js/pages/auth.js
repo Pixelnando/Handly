@@ -1,10 +1,10 @@
 /* Cadastro (RF01), login (RF02), recuperação de acesso (UC03). */
-import { api, h, field, form, cityPicker, notice, logoMark, maskCpfInput, toast } from "../lib.js";
+import { api, h, field, form, cityPicker, notice, logoFull, maskCpfInput, toast } from "../lib.js";
 import { setSession, sessionStorageSafe } from "../app.js";
 
 function authFrame(title, subtitle, content, wide = false) {
   return h("div", { class: "auth-wrap" }, h("div", { class: `card auth-card${wide ? " wide" : ""}` },
-    h("div", { class: "brand", role: "img", "aria-label": "Handly" }, logoMark(), h("span", null, "handly", h("span", { class: "dot" }, "."))),
+    h("div", { class: "brand", role: "img", "aria-label": "Handly" }, ...logoFull()),
     h("h1", { tabindex: "-1", class: "center" }, title), subtitle ? h("p", { class: "muted center" }, subtitle) : null, content));
 }
 

@@ -31,5 +31,7 @@ export function fmtLocal(isoStr) { // dd/mm/aaaa HH:MM
   const d = toLocal(parseIso(isoStr));
   return `${p2(d.getUTCDate())}/${p2(d.getUTCMonth() + 1)}/${d.getUTCFullYear()} ${p2(d.getUTCHours())}:${p2(d.getUTCMinutes())}`;
 }
-const KEYS = ['id', 'request_id', 'sender_id', 'parent_id', 'kind', 'service_id', 'value', 'scheduled_start', 'scheduled_end', 'location', 'notes', 'status', 'created_at', 'responded_at'];
+const KEYS = ['id', 'request_id', 'sender_id', 'parent_id', 'kind', 'service_id', 'value', 'scheduled_start', 'scheduled_end', 'location', 'notes', 'status', 'created_at', 'responded_at', 'service_name'];
+// Propostas com o nome do serviço da solicitação (várias solicitações podem compartilhar a mesma conversa).
+export const PROPOSAL_SELECT = 'SELECT p.*, r.service_name FROM proposals p LEFT JOIN requests r ON r.id=p.request_id';
 export const proposalDict = (row) => Object.fromEntries(KEYS.map((k) => [k, row[k]]));

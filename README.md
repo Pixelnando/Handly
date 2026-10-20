@@ -43,6 +43,7 @@ Paleta e regras de contraste: `docs/DESIGN_TOKENS.md`.
 | `HANDLY_ADMIN_LOGIN`, `HANDLY_ADMIN_EMAIL`, `HANDLY_ADMIN_PASSWORD` | administrador inicial |
 | `HANDLY_SMTP_HOST/PORT/USER/PASSWORD/FROM` | envio real de e-mails (sem isso, ficam na caixa de saída do banco) |
 | `HANDLY_VERIFICATION_PROVIDER` (`mock`/`http`), `_URL`, `_API_KEY` | verificação de identidade (no `mock`, o documento `ERRO503` simula indisponibilidade) |
+| `HANDLY_TEST_MODE` | padrão ligado: sem antecedência mínima e conclusão liberada antes do horário. `0` restaura as regras originais (mínimo de 2 h) |
 | `HANDLY_SESSION_IDLE_MIN`, `HANDLY_SESSION_REMEMBER_DAYS` | duração da sessão |
 
 ## Publicar (Render / Railway / VPS)

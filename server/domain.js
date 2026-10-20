@@ -85,7 +85,7 @@ export function windowsFor(db, service, weekday) {
 }
 
 export function noticeBounds(ctx, service, now) {
-  const lo = addHours(now, service.min_notice_hours || ctx.cfg.DEFAULT_MIN_NOTICE_HOURS);
+  const lo = ctx.cfg.TEST_MODE ? now : addHours(now, service.min_notice_hours || ctx.cfg.DEFAULT_MIN_NOTICE_HOURS);
   const hiH = service.max_notice_hours || ctx.cfg.MAX_NOTICE_LIMIT_HOURS;
   return [lo, addHours(now, hiH)];
 }

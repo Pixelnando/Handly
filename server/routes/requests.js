@@ -1,7 +1,7 @@
 // RF05/RF06/RF07 — solicitar, agendar, consultar e cancelar serviços (UC04, UC07, UC08).
 import { ApiError, audit, fail, login, notify, ok, pageArgs, toInt, track } from '../api.js';
 import { addMinutes, cleanStr, iso, localToUtc, money, nowIso, parseDate, parseHHMM, parseIso, utcnow } from '../util.js';
-import { addMessage, createProposal, fmtDt, getOrCreateConversation, proposalDict, systemMessage } from '../chatlib.js';
+import { PROPOSAL_SELECT, addMessage, createProposal, fmtDt, getOrCreateConversation, proposalDict, systemMessage } from '../chatlib.js';
 import { cancelEval, checkSlot, expireRequests, getProfile, hasActiveSubscription, loadService } from '../domain.js';
 import { toFloat } from './auth.js';
 
@@ -151,7 +151,7 @@ export default function routes(r) {
     expireRequests(db);
     const rq = loadRequest(db, rid, user);
     const out = view(ctx, rq, user);
-    out.proposals = db.all('SELECT * FROM proposals WHERE request_id=? ORDER BY id', rid).map(proposalDict);
+    out.proposals = db.all(`${PROPOSAL_SELECT} WHERE p.request_id=? ORDER BY p.id`, rid).map(proposalDict);
     if (rq.review_id) out.review = db.get('SELECT id,rating,comment,created_at,updated_at,hidden FROM reviews WHERE id=?', rq.review_id);
     return ok({ request: out });
   }));
@@ -194,7 +194,7 @@ export default function routes(r) {
     const rq = loadRequest(db, rid, u);
     if (u.id !== rq.worker_id) fail('forbidden', 'Somente o profissional pode concluir o serviço.', 403);
     if (rq.status !== 'agendada') fail('invalid_status', 'Somente serviços agendados podem ser concluídos.', 409);
-    if (utcnow() < parseIso(rq.scheduled_start)) fail('too_early', 'O serviço só pode ser concluído a partir do horário agendado.', 409);
+    if (!ctx.cfg.TEST_MODE && utcnow() < parseIso(rq.scheduled_start)) fail('too_early', 'O serviço só pode ser concluído a partir do horário agendado.', 409);
     const ts = nowIso();
     db.run("UPDATE requests SET status='concluida', completed_at=?, updated_at=? WHERE id=?", ts, ts, rid);
     if (rq.conversation_id) systemMessage(db, rq.conversation_id, `Serviço “${rq.service_name}” concluído. O cliente já pode avaliar o atendimento.`);

@@ -40,7 +40,7 @@ export class Api {
 export async function startApp() {
   setClock(null);
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'handly-'));
-  const app = createApp({ DB_PATH: path.join(dir, 't.db'), JOBS: false, QUIET: true });
+  const app = createApp({ DB_PATH: path.join(dir, 't.db'), JOBS: false, QUIET: true, TEST_MODE: false });
   const addr = await app.listen(0, '127.0.0.1');
   const base = `http://127.0.0.1:${addr.port}`;
   const ctx = { app, base, dir, anon: new Api(base) };

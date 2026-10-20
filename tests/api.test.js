@@ -406,3 +406,22 @@ suite('front-end servido com CSP por hash e rota desconhecida em JSON', async (c
   assert.equal(nf.json.error.code, 'not_found');
   assert.equal((await c.anon.post('/api/categories', {})).status, 405);
 });
+
+test('modo de teste: sem antecedência mínima e conclusão imediata', async () => {
+  const { startApp } = await import('./helpers.js');
+  const c = await startApp();
+  try {
+    c.app.cfg.TEST_MODE = true;
+    const { api: w, sid } = await c.newWorker('pedro', 'Pedro Alves');
+    const cli = await c.newUser('joana', 'Joana Prado');
+    const now = clock.now();
+    const local = new Date(now.getTime() - 3 * H + 31 * 60000); // próximo meio-horário local
+    const mins = local.getUTCHours() * 60 + local.getUTCMinutes(), t = Math.ceil(mins / 30) * 30;
+    const time = `${String(Math.floor(t / 60) % 24).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`;
+    const r = await cli.post('/api/requests', { service_id: sid, date: c.localDay(t >= 1440 ? 1 : 0), time, location: 'Rua das Flores, 100 - Centro' });
+    assert.equal(r.status, 201, r.text());
+    await c.acceptLatest(w, r.json.request.id);
+    assert.equal((await w.post(`/api/requests/${r.json.request.id}/complete`)).status, 200);
+    assert.equal((await cli.post(`/api/requests/${r.json.request.id}/review`, { rating: 5 })).status, 201);
+  } finally { await c.stop(); }
+});

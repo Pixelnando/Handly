@@ -175,7 +175,7 @@ export async function serviceForm(ctx) {
     field({ name: "avg_duration_min", label: "Tempo médio (minutos)", type: "number", min: 15, max: 1440, step: 15, required: true, value: s?.avg_duration_min ?? 60 }),
     field({ name: "service_area", label: "Área de atendimento", required: true, maxlength: 200, value: s?.service_area ?? state.me.user.city + "/" + state.me.user.uf, class: "full" }),
     field({ name: "cancellation_fee_percent", label: "Taxa de cancelamento (%)", type: "number", min: 0, max: 100, required: true, value: s?.cancellation_fee_percent ?? 0, hint: "Aplicada a cancelamentos do cliente nas últimas 24 h." }),
-    field({ name: "min_notice_hours", label: "Antecedência mínima (horas)", type: "number", min: 1, value: s?.min_notice_hours ?? 2, hint: "Padrão: 2 horas." }),
+    field({ name: "min_notice_hours", label: "Antecedência mínima (horas)", type: "number", min: 1, value: s?.min_notice_hours ?? 2, hint: "Atualmente o sistema não exige antecedência mínima (modo de testes)." }),
     field({ name: "max_notice_hours", label: "Antecedência máxima (horas)", type: "number", min: 1, value: s?.max_notice_hours ?? "", hint: "Opcional: até quanto tempo à frente aceita agendamentos." }),
     mode,
     field({ name: "notes", label: "Observações para o cliente", type: "textarea", rows: 2, maxlength: 800, value: s?.notes ?? "", class: "full" }),

@@ -55,6 +55,7 @@ const ICONS = {
   trash: "M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13",
   home: "M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9z",
   chart: "M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3",
+  clipboard: "M9 4h6v3H9zM7 5H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-1M9 12h6M9 16h6",
   send: "M4 12l16-8-6 16-3-7-7-1z",
   inbox: "M4 13l2-8h12l2 8M4 13v6h16v-6M4 13h5l1 2h4l1-2h5",
   lock: "M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6z",
@@ -84,23 +85,24 @@ export function stars(value, { size } = {}) {
 }
 
 export function logoMark() {
-  // Marca original do Handly: duas "mãos" (arcos) em vermelho claro e verde claro, definidas por tokens.
+  // Ícone da marca: mão com o indicador apontando (contorno em vermelho claro, definido por token).
   const svg = document.createElementNS(SVG_NS, "svg");
-  svg.setAttribute("viewBox", "0 0 32 32");
+  svg.setAttribute("viewBox", "0 0 48 48");
   svg.setAttribute("aria-hidden", "true");
   svg.setAttribute("class", "logo-mark");
-  svg.style.width = svg.style.height = "30px";
-  const mk = (d, color) => {
-    const p = document.createElementNS(SVG_NS, "path");
-    p.setAttribute("d", d);
-    p.setAttribute("fill", "none");
-    p.setAttribute("stroke-width", "3.6");
-    p.setAttribute("stroke-linecap", "round");
-    p.style.stroke = color;
-    return p;
-  };
-  svg.append(mk("M8 5v22", "var(--hd-red-light)"), mk("M24 5v22", "var(--hd-green-light)"), mk("M8 17c0-6 16-6 16 0", "var(--hd-text)"));
+  svg.style.width = svg.style.height = "1.5em";
+  const g = document.createElementNS(SVG_NS, "g");
+  g.setAttribute("transform", "rotate(-35 24 24)");
+  const p = document.createElementNS(SVG_NS, "path");
+  p.setAttribute("d", "M19 25V11a3.2 3.2 0 0 1 6.4 0v11M25.4 21.5h2.4a3.2 3.2 0 0 1 3.2 3.2M31 24.7h1.6a3.2 3.2 0 0 1 3.2 3.2M35.8 27.9V33c0 6.4-4.4 10-10.4 10h-3.6c-3.2 0-5.6-1.8-7.4-4.6l-5-8a3.2 3.2 0 0 1 5.4-3.4L19 32");
+  p.setAttribute("fill", "none"); p.setAttribute("stroke-width", "3.4"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round");
+  p.style.stroke = "var(--hd-red-light)";
+  g.append(p); svg.append(g);
   return svg;
+}
+// Logotipo completo: ícone + "hand" (verde claro) + "ly" (vermelho claro).
+export function logoFull() {
+  return [logoMark(), h("span", { class: "wordmark" }, h("span", { class: "wm-hand" }, "hand"), h("span", { class: "wm-ly" }, "ly"))];
 }
 
 /* ------------------------------------------------------------------ formatação */

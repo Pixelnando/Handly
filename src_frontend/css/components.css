@@ -7,7 +7,10 @@
 .brand { display: inline-flex; align-items: center; gap: var(--hd-space-2); font-weight: 750; font-size: 1.35rem; letter-spacing: -0.02em; }
 .brand:hover, .brand:focus-visible { text-decoration: none; }
 .brand img { width: 30px; height: 30px; display: block; }
-.brand .dot { color: var(--hd-red-light); }
+.brand .wordmark { font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.brand .wm-hand { color: var(--hd-green-light); }
+.brand .wm-ly { color: var(--hd-red-light); }
+.brand .logo-mark { flex: none; }
 .nav { display: flex; align-items: center; gap: var(--hd-space-1); flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
 .nav a { padding: var(--hd-space-2) 10px; border-radius: var(--hd-radius-sm); white-space: nowrap; color: var(--hd-text-muted); font-weight: 560; }
@@ -213,6 +216,8 @@ table.table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 .msg:not(.mine):not(.system) .meta { color: var(--hd-text-muted); }
 .msg.mine .meta { color: var(--hd-text); }
 .proposal { align-self: stretch; max-width: 100%; border: 1px solid var(--hd-red-light); background: var(--hd-card-raised); border-radius: var(--hd-radius); padding: var(--hd-space-4); }
+.proposal-ref { display: flex; align-items: center; gap: var(--hd-space-2); margin-bottom: var(--hd-space-2); font-size: .85rem; font-weight: 650; color: var(--hd-red-light); }
+.proposal-ref svg { width: 1em; height: 1em; flex: none; }
 .proposal.settled { border-color: var(--hd-sep-16); }
 .proposal h4 { display: flex; justify-content: space-between; gap: var(--hd-space-2); flex-wrap: wrap; margin-bottom: var(--hd-space-2); }
 .proposal .actions { display: flex; gap: var(--hd-space-2); flex-wrap: wrap; margin-top: var(--hd-space-3); }
@@ -237,7 +242,7 @@ table.table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 .auth-wrap { min-height: calc(100vh - 20px); display: grid; place-items: center; padding: var(--hd-space-5) var(--hd-space-4); }
 .auth-card { width: min(480px, 100%); }
 .auth-card.wide { width: min(720px, 100%); }
-.auth-card .brand { justify-content: center; margin-bottom: var(--hd-space-4); font-size: 1.8rem; }
+.auth-card .brand { display: flex; justify-content: center; margin-bottom: var(--hd-space-4); font-size: 1.8rem; }
 .hero { display: grid; gap: var(--hd-space-4); padding-block: var(--hd-space-6); }
 .hero h1 { max-width: 18ch; }
 .progress { height: 8px; border-radius: 4px; background: var(--hd-card-raised); overflow: hidden; }
